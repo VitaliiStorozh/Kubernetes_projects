@@ -1,3 +1,7 @@
 00.AWS_Cluster/
 Kubernetes-Commands.xlsx
 *.pdf
+.DS_Store
+Dima/
+Kubernetes-deployment/
+todo-app/

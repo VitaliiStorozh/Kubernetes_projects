@@ -62,8 +62,8 @@ spec:
         - name: all-in-one
           mountPath: "/projected-volume"
           readOnly: true
-        - mountPath: "/var/www/html"
-          name: mypd
+        # - mountPath: "/var/www/html"
+        #   name: mypd
         livenessProbe:
           httpGet:
             path: /
@@ -129,9 +129,9 @@ spec:
               name: secret-basic-auth
           - configMap:
               name: game-demo
-      - name: mypd
-        persistentVolumeClaim:
-          claimName: myclaim
+      # - name: mypd
+      #   persistentVolumeClaim:
+      #     claimName: myclaim
 
 ---
 apiVersion: autoscaling/v2beta1
@@ -221,19 +221,19 @@ stringData:
   username: admin
   password: t0p-Secret
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: myclaim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: microk8s-hostpath
-  # selector:
-  #   matchLabels:
-  #     release: "stable"
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: myclaim
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   volumeMode: Filesystem
+#   resources:
+#     requests:
+#       storage: 1Gi
+#   storageClassName: slow
+#   # selector:
+#   #   matchLabels:
+#   #     release: "stable"
